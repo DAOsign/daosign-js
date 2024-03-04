@@ -1,0 +1,60 @@
+{
+  "domain": {
+    "name": "daosign",
+    "version": "0.1.0",
+    "chainId": 1,
+    "verifyingContract": "0x0000000000000000000000000000000000000000"
+  },
+  "types": {
+    "ProofOfAuthority": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "agreementCID",
+        "type": "string"
+      },
+      {
+        "name": "signers",
+        "type": "Signer[]"
+      },
+      {
+        "name": "app",
+        "type": "string"
+      },
+      {
+        "name": "timestamp",
+        "type": "uint256"
+      },
+      {
+        "name": "metadata",
+        "type": "string"
+      }
+    ],
+    "Signer": [
+      {
+        "name": "addr",
+        "type": "address"
+      },
+      {
+        "name": "metadata",
+        "type": "string"
+      }
+    ]
+  },
+  "primaryType": "ProofOfAuthority",
+  "message": {
+    "name": "Proof-of-Authority",
+    "from": "[from]",
+    "agreementCID": "[agreementCID]",
+    "signers": "[signers]",
+    "app": "daosign",
+    "timestamp": "[timestamp]",
+    "metadata": "{}"
+  }
+}
