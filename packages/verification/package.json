@@ -3,13 +3,18 @@
   "version": "0.1.0",
   "description": "",
   "author": "DAOsign",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "debug": "ts-node ./src/index.ts"
   },
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@daosign/core": "^0.1.0",
+    "pdf-lib": "^1.17.1"
+  },
   "repository": {
     "type": "github",
     "url": "https://github.com/DAOsign",

@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "author": "DAOsign",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "npx tsc"
   },
   "license": "ISC",
   "dependencies": {
     "@daosign/core": "^0.1.0",
+    "@daosign/verification": "^0.1.0",
     "chalk": "^4.1.2",
     "yargs": "^17.7.2"
   },

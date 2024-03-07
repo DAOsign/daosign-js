@@ -7,6 +7,7 @@ import * as ProofOfAuthorityTemplate from "./templates/Proof-of-Authority.json";
 import * as ProofOfSignatureTemplate from "./templates/Proof-of-Signature.json";
 import * as ProofOfAgreementTemplate from "./templates/Proof-of-Agreement.json";
 import { overrideParsedValues } from "./utils";
+import { hash } from "./hash";
 
 export function createProofOfAuthorityPayload(args: ProofOfAuthorityVariables) {
   return proofOfAuthorityTempate(args);
@@ -56,3 +57,5 @@ function proofOfAgreementTemplate(args: ProofOfAgreementVariables) {
   const variables = { ...args, timestamp: Date.now() };
   return overrideParsedValues(ProofOfAgreementTemplate, variables);
 }
+
+export { hash };
