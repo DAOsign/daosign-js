@@ -1,0 +1,16 @@
+{
+  "name": "@daosign/core",
+  "version": "0.1.0",
+  "description": "DaoSign Opensource JS library",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "publish": "npm publish",
+    "debug": "ts-node ./index.ts"
+  },
+  "author": "DaoSign",
+  "license": "ISC",
+  "dependencies": {
+    "ipfs-only-hash": "^4.0.0"
+  }
+}

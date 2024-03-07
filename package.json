@@ -1,21 +1,22 @@
 {
-  "name": "daosign-js",
+  "name": "daosign",
+  "private": true,
   "version": "0.1.0",
   "description": "DaoSign Opensource JS library",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
-    "publish": "npm publish",
-    "debug": "ts-node ./index.ts"
+    "build:core": "npm run build -w=@daosign/core",
+    "publish:core": "npm run publish -w=@daosign/core"
   },
   "author": "DaoSign",
   "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@types/node": "^20.11.24",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
-  "dependencies": {
-    "ipfs-only-hash": "^4.0.0"
-  }
+  "bin": "./packages/cli/dist/index.js"
 }
