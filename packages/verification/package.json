@@ -1,7 +1,7 @@
 {
-  "name": "@daosign/core",
+  "name": "@daosign/verification",
   "version": "0.1.0",
-  "description": "DaoSign Opensource JS library",
+  "description": "",
   "author": "DAOsign",
   "main": "index.js",
   "scripts": {
@@ -9,12 +9,10 @@
     "publish": "npm publish"
   },
   "license": "ISC",
-  "dependencies": {
-    "ipfs-only-hash": "^4.0.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "github",
     "url": "https://github.com/DAOsign",
-    "directory": "packages/core"
+    "directory": "packages/verification"
   }
 }

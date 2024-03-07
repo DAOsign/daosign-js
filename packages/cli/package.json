@@ -2,17 +2,23 @@
   "name": "@daosign/cli",
   "version": "0.1.0",
   "description": "",
+  "author": "DAOsign",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc"
   },
-  "author": "DaoSign",
   "license": "ISC",
   "dependencies": {
+    "@daosign/core": "^0.1.0",
     "chalk": "^4.1.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/yargs": "^17.0.32"
+  },
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/DAOsign",
+    "directory": "packages/cli"
   }
 }
