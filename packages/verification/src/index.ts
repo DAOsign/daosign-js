@@ -1,7 +1,7 @@
 import { PDFDocument } from "pdf-lib";
 import { hash } from "@daosign/core";
 
-export async function verifyCertificateAtPath(pdfBytes: Buffer) {
+export async function verifyCertificateBytes(pdfBytes: Buffer) {
   const pdfDoc = await PDFDocument.load(pdfBytes);
 
   const pdfSubject = pdfDoc.getSubject();
