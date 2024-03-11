@@ -1,12 +1,10 @@
-import { verifyProof } from './verification/verify';
-import { ProofType } from './types';
-import {expect, jest, test, describe, it} from '@jest/globals';
+import { verifyProof } from '../verification/verify';
+import { ProofType } from '../types';
+import {expect, describe, it} from '@jest/globals';
 
-
-// Примеры шаблонов, которые уже предоставлены
-import * as ProofOfAuthorityTemplate from './templates/Proof-of-Authority.json';
-import * as ProofOfSignatureTemplate from './templates/Proof-of-Signature.json';
-import * as ProofOfAgreementTemplate from './templates/Proof-of-Agreement.json';
+import * as ProofOfAuthorityTemplate from '../templates/Proof-of-Authority.json';
+import * as ProofOfSignatureTemplate from '../templates/Proof-of-Signature.json';
+import * as ProofOfAgreementTemplate from '../templates/Proof-of-Agreement.json';
 
 describe('verifyProof', () => {
   it('should verify a correct ProofOfAuthority proof', () => {
@@ -111,7 +109,4 @@ describe('verifyProof', () => {
 
     expect(() => verifyProof(proof)).toThrow('Proof type values mismatch');
   });
-
-
-  // Добавьте здесь больше тестов для других некорректных кейсов
 });

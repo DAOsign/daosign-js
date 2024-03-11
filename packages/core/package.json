@@ -7,15 +7,20 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
+    "test": "jest",
     "publish": "npm publish"
   },
   "license": "ISC",
   "dependencies": {
+    "jest": "^29.7.0",
     "ipfs-only-hash": "^4.0.0"
   },
   "repository": {
     "type": "github",
     "url": "https://github.com/DAOsign",
     "directory": "packages/core"
+  },
+  "devDependencies": {
+    "ts-jest": "^29.1.2"
   }
 }
