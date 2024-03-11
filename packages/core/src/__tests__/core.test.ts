@@ -121,4 +121,94 @@ describe('verifyProof', () => {
 
     expect(() => verifyProof(invalidProof)).toThrow('Unrecognized proof type');
   });
+
+  it('should throw an error for a proof with incorrect count of types', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      types: {
+        ProofOfAuthority: [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "name": "agreementCID",
+            "type": "string"
+          },
+          {
+            "name": "signers",
+            "type": "Signer[]"
+          },
+          {
+            "name": "app",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "name": "metadata",
+            "type": "string"
+          }
+        ]
+      },
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow("Length of type's is not equal");
+  });
+
+  it('should throw an error for a proof with incorrect type name field', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      types: {
+        ProofOfAuthority: [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "name": "agreementCID",
+            "type": "string"
+          },
+          {
+            "name": "signers",
+            "type": "Signer[]"
+          },
+          {
+            "name": "app",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "uint256"
+          },
+          {
+            "name": "metadata",
+            "type": "string"
+          }
+        ],
+        NotSigner: [
+          {
+            "name": "addr",
+            "type": "address"
+          },
+          {
+            "name": "metadata",
+            "type": "string"
+          }
+        ]
+      },
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow("Proof type values mismatch");
+  });
 });
