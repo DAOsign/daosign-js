@@ -2,7 +2,7 @@ import yargs from "yargs";
 import path from "path";
 import chalk from "chalk";
 import fs from "fs";
-import { verifyCertificateAtPath } from "@daosign/verification";
+import { verifyCertificateBytes } from "@daosign/verification";
 
 export class VerifyCommand implements yargs.CommandModule {
   command = "verify [path]";
@@ -23,7 +23,7 @@ export class VerifyCommand implements yargs.CommandModule {
     try {
       const file = fs.readFileSync(fullPath);
 
-      verifyCertificateAtPath(file).then(() => {
+      verifyCertificateBytes(file).then(() => {
         console.log(chalk.green(`File ${chalk.blue(filename)} is valid.`));
       });
     } catch (e) {
