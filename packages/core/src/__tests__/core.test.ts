@@ -112,4 +112,13 @@ describe('verifyProof', () => {
 
     expect(() => verifyProof(invalidProof)).toThrow('Proof verifyingContract malformed');
   });
+
+  it('should throw an error for a proof with incorrect primaryType', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      primaryType: "NotProofOfAuthority"
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow('Unrecognized proof type');
+  });
 });
