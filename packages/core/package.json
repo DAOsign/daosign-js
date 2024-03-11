@@ -1,10 +1,10 @@
 {
   "name": "@daosign/core",
-  "version": "0.1.0",
-  "description": "DaoSign Opensource JS library",
+  "version": "0.1.1",
+  "description": "DAOsign Opensource JS library",
   "author": "DAOsign",
   "main": "dist/index.js",
-  "types":"dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
     "publish": "npm publish"

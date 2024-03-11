@@ -1,15 +1,14 @@
 {
   "name": "@daosign/verification",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "DAOsign verification library",
   "author": "DAOsign",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npx tsc",
     "test": "jest",
-    "publish": "npm publish",
-    "debug": "ts-node ./src/index.ts"
+    "publish": "npm publish"
   },
   "license": "ISC",
   "dependencies": {
