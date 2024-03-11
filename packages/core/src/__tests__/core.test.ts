@@ -1,5 +1,4 @@
 import { verifyProof } from '../verification/verify';
-import { ProofType } from '../types';
 import {expect, describe, it} from '@jest/globals';
 
 import * as ProofOfAuthorityTemplate from '../templates/Proof-of-Authority.json';
@@ -12,13 +11,13 @@ describe('verifyProof', () => {
       ...ProofOfAuthorityTemplate,
       message: {
         ...ProofOfAuthorityTemplate.message,
-        from: '0x0000000000000000000000000000000000000001', // предположим, что это валидный адрес
+        from: '0x0000000000000000000000000000000000000001',
         agreementCID: 'QmNNDiywA3KVUNYUCvHEQY1nC3XB5rcmXAMiwe9EpFZYVE',
         signers: [{
           "addr": "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4",
           "metadata": "{111}"
         }],
-        timestamp: '1609459200', // Замените на корректный timestamp
+        timestamp: '1609459200',
         metadata: '{}'
       }
     };
@@ -78,35 +77,39 @@ describe('verifyProof', () => {
     expect(() => verifyProof(invalidProof)).toThrow('Proof name malformed');
   });
 
-  it('fails verifying ProofOfAgreement with invalid types data', () => {
-    const proof = {
-      ...ProofOfAgreementTemplate,
-      types: {
-        ProofOfAgreement: [
-          {
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "type": "address"
-          },
-          {
-            "name": "agreementCID",
-            "type": "string"
-          },
-          {
-            "name": "signers",
-            "type": "Signer[]"
-          },
-          {
-            "name": "app",
-            "type": "string"
-          }
-        ]
+  it('should throw an error for a proof with incorrect version', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      domain: {
+        ...ProofOfAuthorityTemplate.domain,
+        version: '0.1.1',
       }
     };
 
-    expect(() => verifyProof(proof)).toThrow('Proof type values mismatch');
+    expect(() => verifyProof(invalidProof)).toThrow('Proof version malformed');
+  });
+
+  it('should throw an error for a proof with incorrect chainId', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      domain: {
+        ...ProofOfAuthorityTemplate.domain,
+        chainId: 2,
+      }
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow('Proof chainId malformed');
+  });
+
+  it('should throw an error for a proof with incorrect verifyingContract', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      domain: {
+        ...ProofOfAuthorityTemplate.domain,
+        verifyingContract: "0x0000000000000000000000000000000000000001",
+      }
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow('Proof verifyingContract malformed');
   });
 });
