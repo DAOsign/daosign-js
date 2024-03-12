@@ -211,4 +211,24 @@ describe('verifyProof', () => {
 
     expect(() => verifyProof(invalidProof)).toThrow("Proof type values mismatch");
   });
+
+  it('should throw an error for a proof with malformed message keys', () => {
+    const invalidProof = {
+      ...ProofOfAuthorityTemplate,
+      message: {
+        ...ProofOfAuthorityTemplate.message,
+        from: '0x0000000000000000000000000000000000000001',
+        agreementCID: 'QmNNDiywA3KVUNYUCvHEQY1nC3XB5rcmXAMiwe9EpFZYVE',
+        signers: [{
+          "addr": "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4",
+          "metadata": "{111}"
+        }],
+        timestamp: '1609459200',
+        metadata: '{}',
+        notMetadata: ''
+      }
+    };
+
+    expect(() => verifyProof(invalidProof)).toThrow("Malformed Proof message keys");
+  });
 });
