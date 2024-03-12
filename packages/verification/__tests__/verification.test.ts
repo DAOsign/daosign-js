@@ -6,7 +6,7 @@ describe("Verification module verifies", () => {
   it("Verifies valid certificate", async () => {
     const certificateBytes = getValidCertificate();
 
-    expect(async () => await verifyCertificateBytes(certificateBytes)).not.toThrow();
+    await expect(verifyCertificateBytes(certificateBytes)).resolves.toBeTruthy();
   });
 
   it("Throws error for invalid certificate",  async () => {
