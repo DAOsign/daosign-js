@@ -37,21 +37,20 @@ export function verifyProof(proof: Record<string, any>) {
 function verifyDomain(proof: Proof) {
   const template = ProofOfAuthorityTemplate; //Templates share 'domain' section
 
-  const equalName = equalKeyValue("name", proof, template);
+  const equalName = equalKeyValue("name", proof.domain, template.domain);
   if (!equalName) {
-    throw new Error("Proof name malformwd");
+    throw new Error("Proof name malformed");
   }
 
-  const equalVersion = equalKeyValue("version", proof, template);
+  const equalVersion = equalKeyValue("version", proof.domain, template.domain);
   if (!equalVersion) throw new Error("Proof version malformed");
 
-  const equalChainId = equalKeyValue("chainId", proof, template);
+  const equalChainId = equalKeyValue("chainId", proof.domain, template.domain);
   if (!equalChainId) throw new Error("Proof chainId malformed");
 
   const equalVerifyingContract = equalKeyValue(
     "verifyingContract",
-    proof,
-    template
+    proof.domain, template.domain
   );
   if (!equalVerifyingContract)
     throw new Error("Proof verifyingContract malformed");
@@ -138,7 +137,7 @@ function verifyTypedDataFields(
     const isValidKeys = isValidTypedDataFieldKeys(pfield, tfield);
     if (!isValidKeys) throw new Error(`Not valid proof field ${pfield.name}`);
 
-    const isValidValues = !isValidTypedDataFieldValue(pfield, tfield);
+    const isValidValues = isValidTypedDataFieldValue(pfield, tfield);
     if (!isValidValues) throw new Error(`Not valid proof field ${pfield.name}`);
 
     return true;
@@ -156,15 +155,12 @@ function verifyProofMessageValues(proof: Proof) {
   verifyPrimaryType(proof);
   const primaryType = proof.primaryType;
 
-  if (!(primaryType in proofMessage.types))
-    throw new Error("Primary type is not in proof types");
-
-  const primaryTypeFields = proofMessage.types[primaryType] as TypedDataField[];
+  const primaryTypeFields = proofTypes[primaryType] as TypedDataField[];
   const messageKeys = Object.keys(proofMessage);
 
   const isSameTypeKeyLength = equalArrLength(messageKeys, primaryTypeFields);
   if (!isSameTypeKeyLength)
-    throw new Error("Length of proof's primarytype's is not equal");
+    throw new Error("Length of proof's primary type's is not equal");
 
   const isSameKeyNames = primaryTypeFields.every((field) =>
     messageKeys.some((mk) => mk === field.name)
@@ -188,8 +184,9 @@ function verifyValueType(
   messageTypes: Record<string, TypedDataField[]>
 ) {
   if (isArrayType(type)) {
-    (value as any[]).every((val: any) =>
-      verifyValueType(type, val, messageTypes)
+    (value as any[]).every((val: any) => {
+       return verifyValueType(type.replace("[]", ""), val, messageTypes)
+      }
     );
   } else if (isSimpleType(type)) {
     verifySimpleValueType(type, value);
