@@ -17,12 +17,12 @@ export async function verifyCertificateBytes(pdfBytes: Buffer) {
     throw new Error("Error parsing PDF metadata");
   }
 
-  const authorityCID = parsed.authorityCID;
-  if (!authorityCID) {
+  const agreementProofCID = parsed.agreementProofCID;
+  if (!agreementProofCID) {
     throw new Error("Provided file is not a DAOsign certificate");
   }
 
-  console.log("AuthorityCID:", authorityCID);
+  console.log("AuthorityCID:", agreementProofCID);
 
   const fileCID = await hash(pdfBytes);
   console.log("FileCID:", fileCID);
