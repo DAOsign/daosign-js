@@ -2,7 +2,7 @@ import yargs from "yargs";
 import path from "path";
 import chalk from "chalk";
 import fs from "fs";
-import { verifyCertificateBytes } from "@daosign/verification";
+import { verifyCertificateBytes } from "@daosign/verification/src";
 
 export class VerifyCommand implements yargs.CommandModule {
   command = "verify [path]";

@@ -1,6 +1,6 @@
-import * as ProofOfAuthorityTemplate from "./templates/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "./templates/proof/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "./templates/proof/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "./templates/proof/Proof-of-Agreement.json";
 
 export interface ProofOfAuthorityVariables {
   from: string;
@@ -14,8 +14,30 @@ export interface ProofOfSignatureVariables {
 }
 
 export interface ProofOfAgreementVariables {
-  authorityCID: string;
-  signatureCIDs: string[];
+  agreementFileProofCID: string;
+  agreementSignProofs: ProofOfAgreementItemVariables[];
+}
+
+interface ProofOfAgreementItemVariables {
+  proofCID: string;
+}
+
+export interface ProofOfAuthorityIPFSVariables {
+  sig: string;
+  address: string;
+  data: ProofOfAuthorityVariables;
+}
+
+export interface ProofOfSignatureIPFSVariables {
+  sig: string;
+  address: string;
+  data: ProofOfSignatureVariables;
+}
+
+export interface ProofOfAgreementIPFSVariables {
+  sig: string;
+  address: string;
+  data: ProofOfAgreementVariables;
 }
 
 export type Proof = Record<string, any>;

@@ -2,15 +2,21 @@ import {
   ProofOfAuthorityVariables,
   ProofOfSignatureVariables,
   ProofOfAgreementVariables,
+  ProofOfAuthorityIPFSVariables,
+  ProofOfSignatureIPFSVariables,
+  ProofOfAgreementIPFSVariables,
 } from "./types";
-import * as ProofOfAuthorityTemplate from "./templates/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "./templates/proof/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "./templates/proof/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "./templates/proof/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplateIPFS from "./templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplateIPFS from "./templates/signature/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplateIPFS from "./templates/signature/Proof-of-Agreement.json";
 import { overrideParsedValues } from "./utils";
 import { hash } from "./hash";
 
 export function createProofOfAuthorityPayload(args: ProofOfAuthorityVariables) {
-  return proofOfAuthorityTempate(args);
+  return proofOfAuthorityTemplate(args);
 }
 
 export function createProofOfSignaturePayload(args: ProofOfSignatureVariables) {
@@ -19,6 +25,18 @@ export function createProofOfSignaturePayload(args: ProofOfSignatureVariables) {
 
 export function createProofOfAgreementPayload(args: ProofOfAgreementVariables) {
   return proofOfAgreementTemplate(args);
+}
+
+export function createProofOfAuthorityIPFSPayload(args: ProofOfAuthorityIPFSVariables) {
+  return proofOfAuthorityIPFSTemplate(args);
+}
+
+export function createProofOfSignatureIPFSPayload(args: ProofOfSignatureIPFSVariables) {
+  return proofOfSignatureIPFSTemplate(args);
+}
+
+export function createProofOfAgreementIPFSPayload(args: ProofOfAgreementIPFSVariables) {
+  return proofOfAgreementIPFSTemplate(args);
 }
 
 export function createSignedProof(
@@ -33,7 +51,35 @@ export function createSignedProof(
   };
 }
 
-function proofOfAuthorityTempate(args: ProofOfAuthorityVariables) {
+function proofOfAuthorityIPFSTemplate(args: ProofOfAuthorityIPFSVariables) {
+  const signers = args.data.signers.map((address) => ({
+    addr: address,
+    metadata: "{}",
+  }));
+
+  const variables = {
+    ...args,
+    signers,
+    timestamp: Date.now(),
+  };
+
+  return overrideParsedValues(ProofOfAuthorityTemplateIPFS, variables);
+}
+
+function proofOfSignatureIPFSTemplate(args: ProofOfSignatureIPFSVariables) {
+  const variables = { ...args, timestamp: Date.now() };
+  return overrideParsedValues(ProofOfSignatureTemplateIPFS, variables);
+}
+
+function proofOfAgreementIPFSTemplate(args: ProofOfAgreementIPFSVariables) {
+  const signatureCIDs = args.data.agreementSignProofs.map((signatureCID) => ({ proofCID: signatureCID }))
+
+  const variables = { ...args, timestamp: Date.now(), agreementSignProofs: signatureCIDs };
+
+  return overrideParsedValues(ProofOfAgreementTemplateIPFS, variables);
+}
+
+function proofOfAuthorityTemplate(args: ProofOfAuthorityVariables) {
   const signers = args.signers.map((address) => ({
     addr: address,
     metadata: "{}",
@@ -54,7 +100,10 @@ function proofOfSignatureTemplate(args: ProofOfSignatureVariables) {
 }
 
 function proofOfAgreementTemplate(args: ProofOfAgreementVariables) {
-  const variables = { ...args, timestamp: Date.now() };
+  const signatureCIDs = args.agreementSignProofs.map((signatureCID) => ({ proofCID: signatureCID }))
+
+  const variables = { ...args, timestamp: Date.now(), agreementSignProofs: signatureCIDs };
+
   return overrideParsedValues(ProofOfAgreementTemplate, variables);
 }
 

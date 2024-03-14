@@ -1,0 +1,11 @@
+{
+  "address": "<signer's address>",
+  "sig": "<signer's signature>",
+  "data": {
+    "agreementFileProofCID": "<Agreement File Proof CID>",
+    "agreementSignProofs": [
+      { "proofCID": "<Agreement Sign Proof CID>" }
+    ],
+    "timestamp": "[timestamp]"
+  }
+}

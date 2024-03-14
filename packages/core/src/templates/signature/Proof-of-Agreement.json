@@ -1,0 +1,7 @@
+{
+  "agreementFileProofCID": "<Agreement File Proof CID>",
+  "agreementSignProofs": [
+    { "proofCID": "<Agreement Sign Proof CID>" }
+  ],
+  "timestamp": "[timestamp]"
+}
