@@ -1,18 +1,18 @@
-import * as ProofOfAuthorityTemplate from "../templates/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "../templates/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "../templates/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "../templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "../templates/signature/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "../templates/signature/Proof-of-Agreement.json";
 import { ProofType, Proof, TypedDataField, ProofMessageTypes } from "../types";
 
 export const ProofTemplates = {
   [ProofType.ProofOfAuthority]: ProofOfAuthorityTemplate,
   [ProofType.ProofOfSignature]: ProofOfSignatureTemplate,
-  [ProofType.ProofOfAgreement]: ProofOfAgreementTemplate,
+  // [ProofType.ProofOfAgreement]: ProofOfAgreementTemplate,
 };
 
 export const ProofTypeMap = {
   [ProofOfAuthorityTemplate.primaryType]: ProofType.ProofOfAuthority,
   [ProofOfSignatureTemplate.primaryType]: ProofType.ProofOfSignature,
-  [ProofOfAgreementTemplate.primaryType]: ProofType.ProofOfAgreement,
+  // [ProofOfAgreementTemplate.primaryType]: ProofType.ProofOfAgreement,
 };
 
 /* MAIN */

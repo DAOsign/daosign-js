@@ -55,7 +55,7 @@ export interface TypedDataField {
 export enum ProofType {
   ProofOfAuthority,
   ProofOfSignature,
-  ProofOfAgreement,
+  // ProofOfAgreement,
 }
 
 export type ProofMessageTypes = Record<string, TypedDataField[]>;
