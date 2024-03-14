@@ -1,9 +1,8 @@
 import { verifyProof } from '../verification/verify';
 import {expect, describe, it} from '@jest/globals';
 
-import * as ProofOfAuthorityTemplate from '../templates/Proof-of-Authority.json';
-import * as ProofOfSignatureTemplate from '../templates/Proof-of-Signature.json';
-import * as ProofOfAgreementTemplate from '../templates/Proof-of-Agreement.json';
+import * as ProofOfAuthorityTemplate from "../templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "../templates/signature/Proof-of-Signature.json";
 
 describe('verifyProof', () => {
   it('should verify a correct ProofOfAuthority proof', () => {

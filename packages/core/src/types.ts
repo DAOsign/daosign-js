@@ -1,6 +1,6 @@
-import * as ProofOfAuthorityTemplate from "./templates/proof/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/proof/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/proof/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "./templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "./templates/signature/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "./templates/signature/Proof-of-Agreement.json";
 
 export interface ProofOfAuthorityVariables {
   from: string;

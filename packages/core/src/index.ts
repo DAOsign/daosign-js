@@ -6,12 +6,12 @@ import {
   ProofOfSignatureIPFSVariables,
   ProofOfAgreementIPFSVariables,
 } from "./types";
-import * as ProofOfAuthorityTemplate from "./templates/proof/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/proof/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/proof/Proof-of-Agreement.json";
-import * as ProofOfAuthorityTemplateIPFS from "./templates/signature/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplateIPFS from "./templates/signature/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplateIPFS from "./templates/signature/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "./templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "./templates/signature/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "./templates/signature/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplateIPFS from "./templates/proof/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplateIPFS from "./templates/proof/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplateIPFS from "./templates/proof/Proof-of-Agreement.json";
 import { overrideParsedValues } from "./utils";
 import { hash } from "./hash";
 
