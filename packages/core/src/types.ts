@@ -22,22 +22,10 @@ interface ProofOfAgreementItemVariables {
   proofCID: string;
 }
 
-export interface ProofOfAuthorityIPFSVariables {
+export interface SignedProofVariables {
   sig: string;
   address: string;
-  data: ProofOfAuthorityVariables;
-}
-
-export interface ProofOfSignatureIPFSVariables {
-  sig: string;
-  address: string;
-  data: ProofOfSignatureVariables;
-}
-
-export interface ProofOfAgreementIPFSVariables {
-  sig: string;
-  address: string;
-  data: ProofOfAgreementVariables;
+  data: Record<string, any>;
 }
 
 export type Proof = Record<string, any>;
