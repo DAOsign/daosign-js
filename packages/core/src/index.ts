@@ -2,15 +2,17 @@ import {
   ProofOfAuthorityVariables,
   ProofOfSignatureVariables,
   ProofOfAgreementVariables,
+  SignedProofVariables,
 } from "./types";
-import * as ProofOfAuthorityTemplate from "./templates/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/Proof-of-Agreement.json";
+import {default as ProofOfAuthorityTemplate} from "./templates/signature/Proof-of-Authority.json";
+import {default as ProofOfSignatureTemplate} from "./templates/signature/Proof-of-Signature.json";
+import {default as ProofOfAgreementTemplate} from "./templates/signature/Proof-of-Agreement.json";
+import {default as SignedProofTemplate} from "./templates/proof/Signed-Proof.json";
 import { overrideParsedValues } from "./utils";
 import { hash } from "./hash";
 
 export function createProofOfAuthorityPayload(args: ProofOfAuthorityVariables) {
-  return proofOfAuthorityTempate(args);
+  return proofOfAuthorityTemplate(args);
 }
 
 export function createProofOfSignaturePayload(args: ProofOfSignatureVariables) {
@@ -19,6 +21,10 @@ export function createProofOfSignaturePayload(args: ProofOfSignatureVariables) {
 
 export function createProofOfAgreementPayload(args: ProofOfAgreementVariables) {
   return proofOfAgreementTemplate(args);
+}
+
+export function createSignedProofPayload(args: SignedProofVariables) {
+  return signedProofTemplate(args);
 }
 
 export function createSignedProof(
@@ -33,7 +39,11 @@ export function createSignedProof(
   };
 }
 
-function proofOfAuthorityTempate(args: ProofOfAuthorityVariables) {
+function signedProofTemplate(args: SignedProofVariables) {
+  return overrideParsedValues(SignedProofTemplate, args);
+}
+
+function proofOfAuthorityTemplate(args: ProofOfAuthorityVariables) {
   const signers = args.signers.map((address) => ({
     addr: address,
     metadata: "{}",
@@ -54,7 +64,10 @@ function proofOfSignatureTemplate(args: ProofOfSignatureVariables) {
 }
 
 function proofOfAgreementTemplate(args: ProofOfAgreementVariables) {
-  const variables = { ...args, timestamp: Date.now() };
+  const signatureCIDs = args.agreementSignProofs.map((signatureCID) => ({ proofCID: signatureCID }))
+
+  const variables = { ...args, timestamp: Date.now(), agreementSignProofs: signatureCIDs };
+
   return overrideParsedValues(ProofOfAgreementTemplate, variables);
 }
 

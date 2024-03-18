@@ -1,9 +1,9 @@
 import { verifyProof } from '../verification/verify';
 import {expect, describe, it} from '@jest/globals';
 
-import * as ProofOfAuthorityTemplate from '../templates/Proof-of-Authority.json';
-import * as ProofOfSignatureTemplate from '../templates/Proof-of-Signature.json';
-import * as ProofOfAgreementTemplate from '../templates/Proof-of-Agreement.json';
+import {default as ProofOfAuthorityTemplate} from "../templates/signature/Proof-of-Authority.json";
+import {default as ProofOfSignatureTemplate} from "../templates/signature/Proof-of-Signature.json";
+import { createProofOfAuthorityPayload, createSignedProofPayload} from "../index";
 
 describe('verifyProof', () => {
   it('should verify a correct ProofOfAuthority proof', () => {
@@ -230,5 +230,29 @@ describe('verifyProof', () => {
     };
 
     expect(() => verifyProof(invalidProof)).toThrow("Malformed Proof message keys");
+  });
+
+  it('should throw an error for a proof with malformed message keys', () => {
+    const payload = { from: "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4", agreementCID: "QmVoErhYkkYzSXuswEmLg6K2UY2T45xd8V3ugyfybxHXct", signers: ['0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4'] }
+
+    expect(() => createProofOfAuthorityPayload(payload)).not.toThrow();
+  });
+
+  it('should something', () => {
+    const payload = {
+      address: "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4", sig: "0x", data: { ...ProofOfAuthorityTemplate, message: {
+          ...ProofOfAuthorityTemplate.message,
+          from: '0x0000000000000000000000000000000000000001',
+          agreementCID: 'QmNNDiywA3KVUNYUCvHEQY1nC3XB5rcmXAMiwe9EpFZYVE',
+          signers: [{
+            "addr": "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4",
+            "metadata": "{111}"
+          }],
+          timestamp: '1609459200',
+          metadata: '{}'
+        } }
+    }
+
+    expect(() => createSignedProofPayload(payload)).not.toThrow();
   });
 });

@@ -1,6 +1,6 @@
-import * as ProofOfAuthorityTemplate from "./templates/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "./templates/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "./templates/Proof-of-Agreement.json";
+import * as ProofOfAuthorityTemplate from "./templates/signature/Proof-of-Authority.json";
+import * as ProofOfSignatureTemplate from "./templates/signature/Proof-of-Signature.json";
+import * as ProofOfAgreementTemplate from "./templates/signature/Proof-of-Agreement.json";
 
 export interface ProofOfAuthorityVariables {
   from: string;
@@ -14,8 +14,18 @@ export interface ProofOfSignatureVariables {
 }
 
 export interface ProofOfAgreementVariables {
-  authorityCID: string;
-  signatureCIDs: string[];
+  agreementFileProofCID: string;
+  agreementSignProofs: ProofOfAgreementItemVariables[];
+}
+
+interface ProofOfAgreementItemVariables {
+  proofCID: string;
+}
+
+export interface SignedProofVariables {
+  sig: string;
+  address: string;
+  data: Record<string, any>;
 }
 
 export type Proof = Record<string, any>;
@@ -33,7 +43,7 @@ export interface TypedDataField {
 export enum ProofType {
   ProofOfAuthority,
   ProofOfSignature,
-  ProofOfAgreement,
+  // ProofOfAgreement,
 }
 
 export type ProofMessageTypes = Record<string, TypedDataField[]>;
