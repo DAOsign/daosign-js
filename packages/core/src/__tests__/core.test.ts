@@ -3,7 +3,7 @@ import {expect, describe, it} from '@jest/globals';
 
 import {default as ProofOfAuthorityTemplate} from "../templates/signature/Proof-of-Authority.json";
 import {default as ProofOfSignatureTemplate} from "../templates/signature/Proof-of-Signature.json";
-import { createProofOfAuthorityPayload, createSignedProofPayload} from "../index";
+import {createProofOfAgreementPayload, createProofOfAuthorityPayload, createSignedProofPayload} from "../index";
 
 describe('verifyProof', () => {
   it('should verify a correct ProofOfAuthority proof', () => {
@@ -238,7 +238,7 @@ describe('verifyProof', () => {
     expect(() => createProofOfAuthorityPayload(payload)).not.toThrow();
   });
 
-  it('should something', () => {
+  it('should create correct signed PoAf payload', () => {
     const payload = {
       address: "0xb1ff285b5e42cd2a0abf67e4552cf5a6986edba4", sig: "0x", data: { ...ProofOfAuthorityTemplate, message: {
           ...ProofOfAuthorityTemplate.message,
@@ -254,5 +254,15 @@ describe('verifyProof', () => {
     }
 
     expect(() => createSignedProofPayload(payload)).not.toThrow();
+  });
+
+  it('should create correct signed PoAg payload', () => {
+    const payload = {
+       agreementFileProofCID: "QmYoPxzogL9NPqu4bGqmuM9CfhNFRvmC3yeW84aSXPJaEm",
+        agreementSignProofs: ['QmbFwiGdSeGT2T8ZZLNmjRSqEDAgzybwQyhfijk41676Nv'],
+        timestamp: "1609459200"
+    }
+
+    expect(() => createProofOfAgreementPayload(payload)).not.toThrow();
   });
 });
