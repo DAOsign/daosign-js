@@ -15,11 +15,7 @@ export interface ProofOfSignatureVariables {
 
 export interface ProofOfAgreementVariables {
   agreementFileProofCID: string;
-  agreementSignProofs: ProofOfAgreementItemVariables[];
-}
-
-interface ProofOfAgreementItemVariables {
-  proofCID: string;
+  agreementSignProofs: string[];
 }
 
 export interface SignedProofVariables {
