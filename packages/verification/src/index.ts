@@ -1,5 +1,5 @@
 import { PDFDocument } from "pdf-lib";
-import { hash } from "../../core/src";
+import { hash } from "@daosign/core";
 
 export async function verifyCertificateBytes(pdfBytes: Buffer) {
   const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -22,7 +22,6 @@ export async function verifyCertificateBytes(pdfBytes: Buffer) {
     throw new Error("Provided file is not a DAOsign certificate");
   }
 
-  console.log("AuthorityCID:", agreementProofCID);
 
   const fileCID = await hash(pdfBytes);
   console.log("FileCID:", fileCID);
