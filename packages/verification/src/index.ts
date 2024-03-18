@@ -1,5 +1,6 @@
 import { PDFDocument } from "pdf-lib";
 import { hash } from "@daosign/core";
+import { existsInStorage } from "./storage";
 
 export async function verifyCertificateBytes(pdfBytes: Buffer) {
   const pdfDoc = await PDFDocument.load(pdfBytes);
@@ -22,9 +23,12 @@ export async function verifyCertificateBytes(pdfBytes: Buffer) {
     throw new Error("Provided file is not a DAOsign certificate");
   }
 
-
   const fileCID = await hash(pdfBytes);
-  console.log("FileCID:", fileCID);
+
+  const isStored = await existsInStorage(fileCID);
+  if (!isStored) {
+    throw new Error("Provided file is not stored");
+  }
 
   return true;
 }
