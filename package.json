@@ -1,7 +1,7 @@
 {
   "name": "daosign",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "DaoSign Opensource JS library",
   "main": "index.js",
   "scripts": {
