@@ -1,6 +1,6 @@
-import * as ProofOfAuthorityTemplate from "../templates/signature/Proof-of-Authority.json";
-import * as ProofOfSignatureTemplate from "../templates/signature/Proof-of-Signature.json";
-import * as ProofOfAgreementTemplate from "../templates/signature/Proof-of-Agreement.json";
+import {default as ProofOfAuthorityTemplate} from "../templates/signature/Proof-of-Authority.json";
+import {default as ProofOfSignatureTemplate} from "../templates/signature/Proof-of-Signature.json";
+import {default as ProofOfAgreementTemplate} from "../templates/signature/Proof-of-Agreement.json";
 import { ProofType, Proof, TypedDataField, ProofMessageTypes } from "../types";
 
 export const ProofTemplates = {
@@ -30,6 +30,15 @@ export function verifyProof(proof: Record<string, any>) {
   verifyProofMessage(proof);
 
   return true;
+}
+
+export function verifyAgreementProof(proof: Record<string, any>) {
+  const templateKeys = Object.keys(ProofOfAgreementTemplate);
+  const inputKeys = Object.keys(proof);
+
+  const hasAllKeys = templateKeys.every(key => inputKeys.includes(key)) && inputKeys.length === templateKeys.length;
+
+  return hasAllKeys;
 }
 
 /* Primary verifiers */

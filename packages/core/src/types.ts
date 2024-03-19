@@ -18,6 +18,11 @@ export interface ProofOfAgreementVariables {
   agreementSignProofs: string[];
 }
 
+export interface ProofOfAgreementIPFSVariables {
+  agreementFileProofCID: string;
+  agreementSignProofs: [{ proofCID: string }];
+}
+
 export interface SignedProofVariables {
   sig: string;
   address: string;

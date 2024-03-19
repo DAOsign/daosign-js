@@ -1,7 +1,9 @@
 import { PDFDocument } from "pdf-lib";
-import { hash } from "@daosign/core";
+import { hash } from "@daosign/core/src/index";
+import IPFSProofService from "./services/ipfs";
 
 export async function verifyCertificateBytes(pdfBytes: Buffer) {
+  const IPFSService = new IPFSProofService();
   const pdfDoc = await PDFDocument.load(pdfBytes);
 
   const pdfSubject = pdfDoc.getSubject();
@@ -22,6 +24,7 @@ export async function verifyCertificateBytes(pdfBytes: Buffer) {
     throw new Error("Provided file is not a DAOsign certificate");
   }
 
+  await IPFSService.verifyProofs(agreementProofCID);
 
   const fileCID = await hash(pdfBytes);
   console.log("FileCID:", fileCID);
