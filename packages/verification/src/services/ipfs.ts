@@ -12,7 +12,9 @@ export default class IPFSProofService {
     return this.fetcher.get(`ipfs/${CID}`, { responseType: 'arraybuffer' }).then((res) => {
       console.log(JSON.parse(res.data.toString()))
       return JSON.parse(res.data.toString())
-    }).catch((e) => e);
+    }).catch(() => {
+      throw new Error("Invalid proof CID")
+    });
   }
 
   private async getSignatureProofsArray(signatureProofCIDs: string[]): Promise<SignedProofVariables[]> {

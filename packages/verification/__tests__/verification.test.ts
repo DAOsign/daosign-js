@@ -2,7 +2,7 @@ import { verifyCertificateBytes } from "../src";
 import {
   getValidCertificate,
   getInvalidCertificate,
-  getUnstoredValidCertificate,
+  getUnstoredValidCertificate, getInvalidCID,
 } from "./utils";
 import { expect, describe, it } from "@jest/globals";
 
@@ -29,5 +29,13 @@ describe("Verification module verifies", () => {
     await expect(
       async () => await verifyCertificateBytes(certificateBytes)
     ).rejects.toThrow("Provided file is not a DAOsign certificate");
+  });
+
+  it("Throws error for proof with invalid CID in metadata", async () => {
+    const certificateBytes = getInvalidCID();
+
+    await expect(
+      async () => await verifyCertificateBytes(certificateBytes)
+    ).rejects.toThrow("Invalid proof CID");
   });
 });
