@@ -25,14 +25,14 @@ export async function verifyCertificateBytes(pdfBytes: Buffer) {
     throw new Error("Provided file is not a DAOsign certificate");
   }
 
-  await verifyProofService.verifyProofs(agreementProofCID);
-
   const fileCID = await hash(pdfBytes);
 
   const isStored = await existsInStorage(fileCID);
   if (!isStored) {
     throw new Error("Provided file is not stored");
   }
+
+  await verifyProofService.verifyProofs(agreementProofCID);
 
   return true;
 }
