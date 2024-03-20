@@ -23,7 +23,7 @@ To use, follow these steps:
 Example usage:
 
 ```
-import { createProofOfAuthorityPayload, create } from "@daosign/core"
+import { createProofOfAuthorityPayload, createSignedProof } from "@daosign/core"
 
 //create payload
 function createPayload(signer ,agreementCID, agreementSigners) {
