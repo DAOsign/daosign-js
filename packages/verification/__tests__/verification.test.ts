@@ -2,7 +2,7 @@ import { verifyCertificateBytes } from "../src";
 import {
   getValidCertificate,
   getInvalidCertificate,
-  getUnstoredValidCertificate, getInvalidCID,
+  getUnstoredValidCertificate, getInvalidCIDCertificate,
 } from "./utils";
 import { expect, describe, it } from "@jest/globals";
 
@@ -32,7 +32,7 @@ describe("Verification module verifies", () => {
   });
 
   it("Throws error for proof with invalid CID in metadata", async () => {
-    const certificateBytes = getInvalidCID();
+    const certificateBytes = getInvalidCIDCertificate();
 
     await expect(
       async () => await verifyCertificateBytes(certificateBytes)

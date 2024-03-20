@@ -13,7 +13,7 @@ export function getUnstoredValidCertificate() {
   return file;
 }
 
-export function getInvalidCID() {
+export function getInvalidCIDCertificate() {
   const filePath = path.resolve(__dirname, "files/invalid_CID.pdf");
   const file = fs.readFileSync(filePath);
   return file;
