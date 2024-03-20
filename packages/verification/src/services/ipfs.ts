@@ -10,7 +10,6 @@ export default class IPFSProofService {
 
   private async getIPFSProof(CID: string): Promise<any> {
     return this.fetcher.get(`ipfs/${CID}`, { responseType: 'arraybuffer' }).then((res) => {
-      console.log(JSON.parse(res.data.toString()))
       return JSON.parse(res.data.toString())
     }).catch(() => {
       throw new Error("Invalid proof CID")
@@ -24,7 +23,6 @@ export default class IPFSProofService {
 
   async getFileProofs(agreementProofCID: string) {
     const agreementProof = await this.getIPFSProof(agreementProofCID) as ProofOfAgreementIPFSVariables;
-    console.log(agreementProof)
     const signatureProofs = await this.getSignatureProofsArray(agreementProof.agreementSignProofs.map((item) => item.proofCID));
     const authorityProof = await this.getIPFSProof(agreementProof.agreementFileProofCID) as SignedProofVariables;
 
