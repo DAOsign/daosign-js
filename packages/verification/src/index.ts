@@ -5,7 +5,7 @@ import VerifyProofService from "./services/verify";
 
 export async function verifyCertificateBytes(pdfBytes: Buffer) {
   const verifyProofService = new VerifyProofService();
-  const pdfDoc = await PDFDocument.load(pdfBytes);
+  const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
   const pdfSubject = pdfDoc.getSubject();
 
