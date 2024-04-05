@@ -24,10 +24,6 @@
         "type": "Signer[]"
       },
       {
-        "name": "app",
-        "type": "string"
-      },
-      {
         "name": "timestamp",
         "type": "uint256"
       },
@@ -53,7 +49,6 @@
     "from": "[from]",
     "agreementCID": "[agreementCID]",
     "signers": "[signers]",
-    "app": "daosign",
     "timestamp": "[timestamp]",
     "metadata": "{}"
   }

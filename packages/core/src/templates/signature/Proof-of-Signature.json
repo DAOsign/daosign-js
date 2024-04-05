@@ -20,10 +20,6 @@
         "type": "string"
       },
       {
-        "name": "app",
-        "type": "string"
-      },
-      {
         "name": "timestamp",
         "type": "uint256"
       },
@@ -38,7 +34,6 @@
     "authorityCID": "[authorityCID]",
     "name": "Proof-of-Signature",
     "signer": "[signer]",
-    "app": "daosign",
     "timestamp": "[timestamp]",
     "metadata": "{}"
   }
