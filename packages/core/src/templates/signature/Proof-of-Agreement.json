@@ -1,5 +1,6 @@
 {
   "authorityCID": "[authorityCID]",
   "signatureCIDs": "[signatureCIDs]",
-  "timestamp": "[timestamp]"
+  "timestamp": "[timestamp]",
+  "metadata": "[metadata]"
 }

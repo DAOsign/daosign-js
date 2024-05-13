@@ -16,11 +16,13 @@ export interface ProofOfSignatureVariables {
 export interface ProofOfAgreementVariables {
   authorityCID: string;
   signatureCIDs: string[];
+  metadata: string;
 }
 
 export interface ProofOfAgreementIPFSVariables {
   authorityCID: string;
-  signatureCIDs: [{ proofCID: string }];
+  signatureCIDs: string[];
+  metadata: string;
 }
 
 export interface SignedProofVariables {

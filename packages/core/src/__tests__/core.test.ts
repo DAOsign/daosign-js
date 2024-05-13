@@ -287,6 +287,7 @@ describe("verifyProof", () => {
     const payload = {
       authorityCID: "QmYoPxzogL9NPqu4bGqmuM9CfhNFRvmC3yeW84aSXPJaEm",
       signatureCIDs: ["QmbFwiGdSeGT2T8ZZLNmjRSqEDAgzybwQyhfijk41676Nv"],
+      metadata: "{}",
       timestamp: "1609459200",
     };
 
