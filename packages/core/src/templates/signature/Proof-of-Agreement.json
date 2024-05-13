@@ -1,5 +1,5 @@
 {
-  "agreementFileProofCID": "[agreementFileProofCID]",
-  "agreementSignProofs": "[agreementSignProofs]",
+  "authorityCID": "[authorityCID]",
+  "signatureCIDs": "[signatureCIDs]",
   "timestamp": "[timestamp]"
 }

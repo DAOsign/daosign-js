@@ -23,8 +23,8 @@ export default class IPFSProofService {
 
   async getFileProofs(agreementProofCID: string) {
     const agreementProof = await this.getIPFSProof(agreementProofCID) as ProofOfAgreementIPFSVariables;
-    const signatureProofs = await this.getSignatureProofsArray(agreementProof.agreementSignProofs.map((item) => item.proofCID));
-    const authorityProof = await this.getIPFSProof(agreementProof.agreementFileProofCID) as SignedProofVariables;
+    const signatureProofs = await this.getSignatureProofsArray(agreementProof.signatureCIDs.map((item) => item.proofCID));
+    const authorityProof = await this.getIPFSProof(agreementProof.authorityCID) as SignedProofVariables;
 
     return { authorityProof, signatureProofs, agreementProof }
   }

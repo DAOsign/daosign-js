@@ -14,13 +14,13 @@ export interface ProofOfSignatureVariables {
 }
 
 export interface ProofOfAgreementVariables {
-  agreementFileProofCID: string;
-  agreementSignProofs: string[];
+  authorityCID: string;
+  signatureCIDs: string[];
 }
 
 export interface ProofOfAgreementIPFSVariables {
-  agreementFileProofCID: string;
-  agreementSignProofs: [{ proofCID: string }];
+  authorityCID: string;
+  signatureCIDs: [{ proofCID: string }];
 }
 
 export interface SignedProofVariables {

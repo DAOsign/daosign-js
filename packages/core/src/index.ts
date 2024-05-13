@@ -64,9 +64,9 @@ function proofOfSignatureTemplate(args: ProofOfSignatureVariables) {
 }
 
 function proofOfAgreementTemplate(args: ProofOfAgreementVariables) {
-  const signatureCIDs = args.agreementSignProofs.map((signatureCID) => ({ proofCID: signatureCID }))
+  const signatureCIDs = args.signatureCIDs.map((signatureCID) => ({ proofCID: signatureCID }))
 
-  const variables = { ...args, timestamp: Date.now(), agreementSignProofs: signatureCIDs };
+  const variables = { ...args, timestamp: Date.now(), signatureCIDs: signatureCIDs };
 
   return overrideParsedValues(ProofOfAgreementTemplate, variables);
 }
